@@ -19,21 +19,18 @@ import { type AdapterAccount } from "next-auth/adapters";
  */
 export const mysqlTable = mysqlTableCreator((name) => `NoteShare_${name}`);
 
-export const posts = mysqlTable(
-  "post",
+export const notes = mysqlTable(
+  'notes',
   {
-    id: bigint("id", { mode: "number" }).primaryKey().autoincrement(),
-    name: varchar("name", { length: 256 }),
-    createdById: varchar("createdById", { length: 255 }).notNull(),
+    noteId: bigint("note_id", { mode: "number" }).primaryKey().autoincrement(),
+    authorId: varchar("author_id", {length: 256}).notNull(),
+    category: varchar("category", {length: 256}).notNull(), 
+    text: varchar("text", { length: 256 }).notNull(),
     createdAt: timestamp("created_at")
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
     updatedAt: timestamp("updatedAt").onUpdateNow(),
   },
-  (example) => ({
-    createdByIdIdx: index("createdById_idx").on(example.createdById),
-    nameIndex: index("name_idx").on(example.name),
-  })
 );
 
 export const users = mysqlTable("user", {
