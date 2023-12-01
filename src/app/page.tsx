@@ -24,9 +24,6 @@ export default async function Home() {
         <SharedNote noteText={note.text} author={note.authorEmail} key={note.noteId} />
       ))}
       <CreateNewNote />
-      <NoteCard>
-        test
-      </NoteCard>
     </div>  
   );
 }
