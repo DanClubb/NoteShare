@@ -1,10 +1,9 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import { useState } from "react";
 import { IoCreateOutline } from "react-icons/io5";
 import { api } from "~/trpc/react";
-import LoadingSpinner from "../LoadingSpinner";
 import Button from "./Button";
 import NoteCard from './NoteCard';
 

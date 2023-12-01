@@ -3,6 +3,7 @@ import "~/styles/globals.css";
 // import { Inter } from "next/font/google";
 import { cookies } from "next/headers";
 
+import { getServerAuthSession } from "~/server/auth";
 import { TRPCReactProvider } from "~/trpc/react";
 import Header from "./_components/Header";
 
@@ -24,16 +25,17 @@ export const metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerAuthSession();
   return (
     <html lang="en" className="h-full">
       <body className={`${permanentMarker.className} h-full relative`}>
         <TRPCReactProvider cookies={cookies().toString()}>
-          <Header />
+          <Header session={session ? true : false} />
           {children}
         </TRPCReactProvider>
       </body>

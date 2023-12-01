@@ -1,16 +1,13 @@
-import Link from "next/link";
-import { getServerAuthSession } from "~/server/auth";
+"use client"
 
+import { signIn, signOut } from "next-auth/react";
 
+interface SignInOutButtonProps {
+  session: boolean
+}
 
-export default async function SignInOutButton() {
-    const session = await getServerAuthSession();
-    return (
-        <Link
-              href={session ? "/api/auth/signout" : "/api/auth/signin"}
-              className=" rounded-full bg-white/10 ml-auto px-10 py-3 bg-orange-300 font-semibold no-underline transition hover:bg-orange-200"
-            >
-              {session ? "Sign out" : "Sign in"}
-        </Link>
-    )
+export default function SignInOutButton({session}: SignInOutButtonProps) {
+  if (session) return <button className="ml-auto" onClick={() => signOut()}>Sign out</button>
+  
+  return <button className="ml-auto" onClick={() => signIn()}>Sign in</button>
 }

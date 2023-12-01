@@ -29,7 +29,7 @@ export const notesRouter = createTRPCRouter({
         text: input.text,
         authorId: ctx.session.user.id,
         authorEmail: ctx.session.user.email,
-        category: input.category || 'general'
+        category: input.category ?? 'general'
       });
     }),
 

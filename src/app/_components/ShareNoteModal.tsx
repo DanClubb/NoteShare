@@ -2,6 +2,7 @@ import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { api } from "~/trpc/react";
 import User from '../../types/User';
+import LoadingSpinner from "./LoadingSpinner";
 
 
 interface ShareNoteModalProps {
@@ -43,7 +44,13 @@ export default function ShareNoteModal({users, noteId, setShowShareNoteModal}: S
                         </div>
                         
                     </div>
-                    <button type="submit" className="mt-auto mr-auto px-2 py-1 rounded-sm border-2 border-slate-600 shadow-lg shadow-cyan-200 hover:shadow hover:shadow-cyan-200 hover:scale-95 hover:transition">Share</button>
+                    <div className="flex items-center gap-4 mt-auto mr-auto">
+                        <button type="submit" className="flex justify-center items-center w-16 h-10 rounded-sm border-2 border-slate-600 shadow-lg shadow-cyan-200 hover:shadow hover:shadow-cyan-200 hover:scale-95 hover:transition">
+                        {shareNote.isLoading ? <LoadingSpinner /> : 'Share'}
+                    </button>
+                    {shareNote.isSuccess && <p className="text-lime-600">Shared successfully</p>}
+                    {shareNote.isError && <p className="text-red-600">Failed to share</p>}
+                    </div>
                 </form>
             <div className="bg-slate-600 w-full h-full opacity-80"></div>
         </div>
