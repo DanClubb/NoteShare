@@ -11,11 +11,11 @@ interface ShareNoteModalProps {
     setShowShareNoteModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const filterUsers = (users: User[], currentInput: string): User[] | string => {
-    users = []
-if(users.length > 0) return users
-else return "Can't find user!"
-}
+// const filterUsers = (users: User[], currentInput: string): User[] | string => {
+//     users = []
+// if(users.length > 0) return users
+// else return "Can't find user!"
+// }
 
 export default function ShareNoteModal({users, noteId, setShowShareNoteModal}: ShareNoteModalProps) {
     const [email, setEmail] = useState('')
