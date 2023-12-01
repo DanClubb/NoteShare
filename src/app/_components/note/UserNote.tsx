@@ -45,7 +45,7 @@ export default function UserNote({noteText, noteId, users}: UserNoteProps) {
                     && deleteNote.mutate({ id: noteId });
     }
     return (
-        <NoteCard> 
+        <NoteCard cardColor="bg-orange-300"> 
         <form
             className="flex flex-col h-full"
             onSubmit={(e) => handleNoteAction(e)}

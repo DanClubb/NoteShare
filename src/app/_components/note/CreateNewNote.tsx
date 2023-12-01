@@ -23,7 +23,7 @@ export default function CreateNewNote() {
     }
 
     return (
-       <NoteCard>
+       <NoteCard cardColor="bg-orange-300">
             <form
                 onSubmit={(e) => handleCreateNote(e)}
                 className="flex flex-col h-full"
