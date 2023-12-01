@@ -1,6 +1,7 @@
 import { getServerAuthSession } from "~/server/auth";
 import { api } from "~/trpc/server";
 import CreateNewNote from "./_components/note/CreateNewNote";
+import NoteCard from "./_components/note/NoteCard";
 import SharedNote from "./_components/note/SharedNote";
 import UserNote from "./_components/note/UserNote";
 
@@ -23,6 +24,9 @@ export default async function Home() {
         <SharedNote noteText={note.text} author={note.authorEmail} key={note.noteId} />
       ))}
       <CreateNewNote />
+      <NoteCard>
+        test
+      </NoteCard>
     </div>  
   );
 }

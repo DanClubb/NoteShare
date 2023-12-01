@@ -7,13 +7,12 @@ import { Permanent_Marker } from 'next/font/google';
   
   interface NoteCardProps {
     children: React.ReactNode;
-    cardColor: string;
-    textColor?: string;
+    // cardColor: string;
   }
 
-export default function NoteCard({children, cardColor, textColor}: NoteCardProps) {
+export default function NoteCard({children}: NoteCardProps) {
     return (
-        <div className={`${permanentMarker.className} flex flex-col gap-2 shrink-0 px-4 pt-4 w-64 h-72 bg-${cardColor}-300 text-${textColor}`}>
+        <div className={`${permanentMarker.className} flex flex-col gap-2 shrink-0 px-4 pt-4 w-64 h-72 bg-orange-300 `}>
             {children}
         </div>
     )
