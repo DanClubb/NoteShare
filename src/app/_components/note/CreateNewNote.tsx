@@ -36,7 +36,7 @@ export default function CreateNewNote() {
                     className="grow w-full resize-none bg-transparent placeholder:text-slate-500 placeholder:italic"
                 ></textarea>
                 <div className="flex justify-end -mr-4">
-                     <Button buttonType='submit' icon={{img: IoCreateOutline, caption: 'Create'}} isLoading={createNote.isLoading} />
+                     <Button buttonType='submit' icon={{img: <IoCreateOutline />, caption: 'Create'}} isLoading={createNote.isLoading} />
                 </div>
                
             </form>

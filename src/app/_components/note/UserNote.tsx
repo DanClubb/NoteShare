@@ -58,9 +58,9 @@ export default function UserNote({noteText, noteId, users}: UserNoteProps) {
                 className="grow w-full resize-none bg-transparent"
             ></textarea>
             <div className="flex justify-end -mr-4 mt-auto">
-                <Button buttonType='button' icon={{img: IoIosShareAlt, caption: 'Share'}} setShowShareNoteModal={setShowShareNoteModal} />                
-                <Button buttonType='submit' submitType="delete" icon={{img: IoIosTrash, caption: 'Delete'}} setSubmitType={setSubmitType} isLoading={deleteNote.isLoading} />
-                <Button buttonType='submit' submitType="save" icon={{img: MdOutlineSaveAlt, caption: 'Save'}} setSubmitType={setSubmitType} isLoading={updateNote.isLoading} />
+                <Button buttonType='button' icon={{img: <IoIosShareAlt />, caption: 'Share'}} setShowShareNoteModal={setShowShareNoteModal} />                
+                <Button buttonType='submit' submitType="delete" icon={{img: <IoIosTrash />, caption: 'Delete'}} setSubmitType={setSubmitType} isLoading={deleteNote.isLoading} />
+                <Button buttonType='submit' submitType="save" icon={{img: <MdOutlineSaveAlt />, caption: 'Save'}} setSubmitType={setSubmitType} isLoading={updateNote.isLoading} />
             </div>
         </form>
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { IconType } from 'react-icons';
 import LoadingSpinner from '../LoadingSpinner';
 
@@ -6,7 +6,7 @@ interface ButtonProps {
     buttonType: "button" | "submit";
     submitType?: "delete" | "save"
     icon: {
-        img: any;
+        img: ReactElement<IconType>;
         caption: string;
     };
     isLoading?: boolean;
@@ -39,7 +39,7 @@ export default function Button({buttonType, submitType, icon, isLoading, setShow
         >
 
         <figure className="flex flex-col items-center">
-            {<icon.img />}
+            {icon.img }
             <figcaption className="text-xs">
                 {isLoading ? <LoadingSpinner /> : icon.caption}
             </figcaption>
