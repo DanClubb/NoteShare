@@ -3,8 +3,6 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import { IoIosShareAlt, IoIosTrash } from "react-icons/io";
-import { MdOutlineSaveAlt } from "react-icons/md";
 import { api } from "~/trpc/react";
 import User from "~/types/User";
 import ShareNoteModal from "../ShareNoteModal";
@@ -58,9 +56,9 @@ export default function UserNote({noteText, noteId, users}: UserNoteProps) {
                 className="grow w-full resize-none bg-transparent"
             ></textarea>
             <div className="flex justify-end -mr-4 mt-auto">
-                <Button buttonType='button' icon={{img: IoIosShareAlt, caption: 'Share'}} setShowShareNoteModal={setShowShareNoteModal} />                
-                <Button buttonType='submit' submitType="delete" icon={{img: IoIosTrash, caption: 'Delete'}} setSubmitType={setSubmitType} isLoading={deleteNote.isLoading} />
-                <Button buttonType='submit' submitType="save" icon={{img: MdOutlineSaveAlt, caption: 'Save'}} setSubmitType={setSubmitType} isLoading={updateNote.isLoading} />
+                <Button buttonType='button' icon={{img: 'share', caption: 'Share'}} setShowShareNoteModal={setShowShareNoteModal} />                
+                <Button buttonType='submit' submitType="delete" icon={{img: 'delete', caption: 'Delete'}} setSubmitType={setSubmitType} isLoading={deleteNote.isLoading} />
+                <Button buttonType='submit' submitType="save" icon={{img: 'save', caption: 'Save'}} setSubmitType={setSubmitType} isLoading={updateNote.isLoading} />
             </div>
         </form>
 

@@ -1,12 +1,14 @@
 import React, { ReactElement } from 'react';
-import { IconType } from 'react-icons';
+import { IoIosShareAlt, IoIosTrash } from "react-icons/io";
+import { IoCreateOutline } from "react-icons/io5";
+import { MdOutlineSaveAlt } from "react-icons/md";
 import LoadingSpinner from '../LoadingSpinner';
 
 interface ButtonProps {
     buttonType: "button" | "submit";
     submitType?: "delete" | "save"
     icon: {
-        img: IconType;
+        img: "share" | "delete" | "save" | "create";
         caption: string;
     };
     isLoading?: boolean;
@@ -39,7 +41,10 @@ export default function Button({buttonType, submitType, icon, isLoading, setShow
         >
 
         <figure className="flex flex-col items-center">
-            {<icon.img />}
+            {icon.img === 'save' && <MdOutlineSaveAlt />}
+            {icon.img === 'share' && <IoIosShareAlt />}
+            {icon.img === 'delete' && <IoIosTrash />}
+            {icon.img === 'create'&& <IoCreateOutline />}
             <figcaption className="text-xs">
                 {isLoading ? <LoadingSpinner /> : icon.caption}
             </figcaption>

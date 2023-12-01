@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { IoCreateOutline } from "react-icons/io5";
 import { api } from "~/trpc/react";
 import Button from "./Button";
 import NoteCard from './NoteCard';
@@ -36,7 +35,7 @@ export default function CreateNewNote() {
                     className="grow w-full resize-none bg-transparent placeholder:text-slate-500 placeholder:italic"
                 ></textarea>
                 <div className="flex justify-end -mr-4">
-                     <Button buttonType='submit' icon={{img: IoCreateOutline, caption: 'Create'}} isLoading={createNote.isLoading} />
+                     <Button buttonType='submit' icon={{img: 'create', caption: 'Create'}} isLoading={createNote.isLoading} />
                 </div>
                
             </form>
