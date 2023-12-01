@@ -46,7 +46,7 @@ export default function ShareNoteModal({users, noteId, setShowShareNoteModal}: S
                     <div className="flex flex-col w-full">
                         <label>Who would you like to share with?</label>
                         <input className="mt-2 py-2 px-4 w-full rounded-sm shadow-slate-600 outline-slate-600" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                        <div className={`${(email === users[0]?.email || email.length === 0) && 'invisible'} max-h-44 bg-slate-100 rounded-sm border-2 border-slate-300 overflow-auto cursor-pointer`}>
+                        <div className={`${(email === filterUsers(users, email)[0]?.email || email.length === 0) && 'invisible'} max-h-44 bg-slate-100 rounded-sm border-2 border-slate-300 overflow-auto cursor-pointer`}>
                             {filterUsers(users, email).length === 0 ? 
                                 <p className="py-2 px-4 text-red-600">User not found</p> :
                                 filterUsers(users, email).map((user) => (
