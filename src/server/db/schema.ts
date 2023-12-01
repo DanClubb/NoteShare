@@ -24,6 +24,8 @@ export const notes = mysqlTable(
   {
     noteId: bigint("note_id", { mode: "number" }).primaryKey().autoincrement(),
     authorId: varchar("author_id", {length: 256}).notNull(),
+    authorEmail: varchar("author_email", {length: 256}),
+    sharedWith: varchar("shared_with", { length: 255 }),
     category: varchar("category", {length: 256}).notNull(), 
     text: varchar("text", { length: 256 }).notNull(),
     createdAt: timestamp("created_at")

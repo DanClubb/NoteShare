@@ -4,15 +4,21 @@ import { z } from "zod";
 import {
   createTRPCRouter,
   protectedProcedure,
-  publicProcedure,
 } from "~/server/api/trpc";
 import { notes } from "~/server/db/schema";
 
 export const notesRouter = createTRPCRouter({
-  get: protectedProcedure.input(z.object({ id: z.string() }))
-  .query(({ ctx, input }) => {
+  get: protectedProcedure
+  .query(({ ctx }) => {
       return ctx.db.query.notes.findMany({
-          where: eq(notes.authorId, input.id),
+          where: eq(notes.authorId, ctx.session.user.id),
+      });
+  }),
+
+  getSharedNotes: protectedProcedure
+  .query(({ ctx }) => {
+      return ctx.db.query.notes.findMany({
+          where: eq(notes.sharedWith, ctx.session.user.email!),
       });
   }),
 
@@ -22,6 +28,7 @@ export const notesRouter = createTRPCRouter({
       await ctx.db.insert(notes).values({
         text: input.text,
         authorId: ctx.session.user.id,
+        authorEmail: ctx.session.user.email,
         category: input.category || 'general'
       });
     }),
@@ -40,4 +47,11 @@ export const notesRouter = createTRPCRouter({
         .mutation(async ({ ctx, input }) => {
             await ctx.db.delete(notes).where(eq(notes.noteId, input.id));
     }),
+
+    share: protectedProcedure.input(z.object({email: z.string(), id: z.number()})).mutation(async ({ ctx, input }) => {
+      await ctx.db
+          .update(notes)
+          .set({ sharedWith: input.email })
+          .where(eq(notes.noteId, input.id));
+}),
 });

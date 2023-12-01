@@ -1,20 +1,28 @@
-import { CreateNote } from "~/app/_components/CreateNote";
 import { getServerAuthSession } from "~/server/auth";
 import { api } from "~/trpc/server";
-import { Note } from "./_components/Note";
+import CreateNewNote from "./_components/note/CreateNewNote";
+import SharedNote from "./_components/note/SharedNote";
+import UserNote from "./_components/note/UserNote";
 
 export default async function Home() {
   const session = await getServerAuthSession();
 
   if (!session) return <div className="text-center">Not logged in</div>
 
-  const userNotes = await api.note.get.query({id: session?.user.id!})
+  const userNotes = await api.note.get.query()
+  const users = await api.users.getAllUsers.query()
+  const sharedNotes = await api.note.getSharedNotes.query()
+
   return (
-    <div className="flex justify-center gap-2 flex-wrap">
-      {userNotes.map((note) => (
-        <Note noteId={note.noteId} value={note.text} key={note.noteId} />
+    <div className="flex justify-center gap-4 flex-wrap">
+        {userNotes.map((note) => (
+        <UserNote noteId={note.noteId} noteText={note.text} users={users} author={note.authorEmail} key={note.noteId} />
       ))}
-      <CreateNote />
+    
+      {sharedNotes.map((note) => (
+        <SharedNote noteText={note.text} author={note.authorEmail} key={note.noteId} />
+      ))}
+      <CreateNewNote />
     </div>  
   );
 }
