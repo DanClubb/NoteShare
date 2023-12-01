@@ -6,7 +6,7 @@ interface ButtonProps {
     buttonType: "button" | "submit";
     submitType?: "delete" | "save"
     icon: {
-        img: IconType;
+        img: any;
         caption: string;
     };
     isLoading?: boolean;
