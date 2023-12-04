@@ -1,7 +1,5 @@
-import "~/styles/globals.css";
-
-// import { Inter } from "next/font/google";
 import { cookies } from "next/headers";
+import "~/styles/globals.css";
 
 import { getServerAuthSession } from "~/server/auth";
 import { TRPCReactProvider } from "~/trpc/react";
@@ -14,10 +12,6 @@ import { Permanent_Marker } from 'next/font/google';
       subsets: ["latin"],
   });
 
-// const inter = Inter({
-//   subsets: ["latin"],
-//   variable: "--font-sans",
-// });
 
 export const metadata = {
   title: "Create T3 App",

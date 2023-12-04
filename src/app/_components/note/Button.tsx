@@ -1,29 +1,32 @@
-import React, { ReactElement } from 'react';
+import { useRouter } from "next/navigation";
+import { BiSolidShare } from "react-icons/bi";
 import { IoIosShareAlt, IoIosTrash } from "react-icons/io";
 import { IoCreateOutline } from "react-icons/io5";
 import { MdOutlineSaveAlt } from "react-icons/md";
+import { api } from "~/trpc/react";
 import LoadingSpinner from '../LoadingSpinner';
 
 interface ButtonProps {
     buttonType: "button" | "submit";
-    submitType?: "delete" | "save"
+    submitType?: "delete" | "save"; 
     icon: {
-        img: "share" | "delete" | "save" | "create";
+        img: "share" | "unshare" | "delete" | "save" | "create";
         caption: string;
     };
     isLoading?: boolean;
-    setShowShareNoteModal?: React.Dispatch<React.SetStateAction<boolean>>;
+    setShowModal?: React.Dispatch<React.SetStateAction<boolean>>;
     setSubmitType?: React.Dispatch<React.SetStateAction<{
         save: boolean;
         delete: boolean;
     }>>;
 }
 
-export default function Button({buttonType, submitType, icon, isLoading, setShowShareNoteModal, setSubmitType}: ButtonProps) {
+export default function Button({buttonType, submitType, icon, isLoading, setShowModal, setSubmitType}: ButtonProps) {
+    const router = useRouter();
 
     const handleOnClick = () => {
-        if(setShowShareNoteModal) {
-            setShowShareNoteModal(true)
+        if(setShowModal) {
+            setShowModal(true)
         }
         if (setSubmitType && submitType === "save") {
             setSubmitType((prev) => ({ ...prev, save: true }));
@@ -43,6 +46,7 @@ export default function Button({buttonType, submitType, icon, isLoading, setShow
         <figure className="flex flex-col items-center">
             {icon.img === 'save' && <MdOutlineSaveAlt />}
             {icon.img === 'share' && <IoIosShareAlt />}
+            {icon.img === 'unshare' && <BiSolidShare />}
             {icon.img === 'delete' && <IoIosTrash />}
             {icon.img === 'create'&& <IoCreateOutline />}
             <figcaption className="text-xs">

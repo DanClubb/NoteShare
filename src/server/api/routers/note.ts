@@ -53,5 +53,11 @@ export const notesRouter = createTRPCRouter({
           .update(notes)
           .set({ sharedWith: input.email })
           .where(eq(notes.noteId, input.id));
-}),
+    }),
+
+    unshare: protectedProcedure.input(z.object({id: z.number()})).mutation(async ({ ctx, input }) => {
+      await ctx.db.update(notes)
+                  .set({ sharedWith: null})
+                  .where(eq(notes.noteId, input.id));
+    }),
 });

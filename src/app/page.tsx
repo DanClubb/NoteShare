@@ -17,7 +17,7 @@ export default async function Home() {
   return (
     <div className="flex justify-center gap-4 flex-wrap">
         {userNotes.map((note) => (
-        <UserNote noteId={note.noteId} noteText={note.text} users={users} author={note.authorEmail} key={note.noteId} />
+        <UserNote noteId={note.noteId} noteText={note.text} users={users} shared={note.sharedWith} key={note.noteId} />
       ))}
     
       {sharedNotes.map((note) => (
